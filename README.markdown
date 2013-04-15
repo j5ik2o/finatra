@@ -1,4 +1,12 @@
 
+```scala
+resolvers ++= Seq(
+  "Finatra Repository" at "http://j5ik2o.github.io/finatra/repos"
+),
+libraryDependencies ++= Seq(
+  "org.twitter" %% "finatra" % "1.3.2-SNAPSHOT"
+),
+```
 
 # Finatra [![Build Status](https://secure.travis-ci.org/capotej/finatra.png)](http://travis-ci.org/capotej/finatra)
 
@@ -40,7 +48,7 @@ Finatra is a sinatra-inspired web framework for scala, running on top of [Finagl
 
 object App {
 
-  
+
   class ExampleApp extends Controller {
 
     /**
