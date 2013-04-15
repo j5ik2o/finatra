@@ -1,20 +1,31 @@
 import sbt._
 import sbt.Keys._
 
-object MsgpackerBuild extends Build {
+object FinatraBuild extends Build {
 
-  lazy val dependsOnScalaVersion = (scalaVersion) { v =>{
-    val scalaTest = v match {
-      case "2.9.2" => "org.scalatest" %% "scalatest" % "1.7.2"
-      case "2.10.1" => "org.scalatest" %% "scalatest" % "1.9.1"
-    }
-    Seq(
+  lazy val dependsOnScalaVersion = (scalaVersion) {
+    v => {
+      val scalaTest = v match {
+        case "2.9.2" => "org.scalatest" %% "scalatest" % "1.7.2"
+        case "2.10.1" => "org.scalatest" %% "scalatest" % "1.9.1"
+      }
+      Seq(
         scalaTest
       )
-  }}
+    }
+  }
 
-  lazy val msgpacker = Project(
-    id = "finatra" ,
+  def publish = publishTo <<= (version) {
+    version: String =>
+      if (version.trim.endsWith("SNAPSHOT")) {
+        Some(Resolver.file("snaphost", new File("./repos/snapshot")))
+      } else {
+        Some(Resolver.file("release", new File("./repos/release")))
+      }
+  }
+
+  lazy val root = Project(
+    id = "finatra",
     base = file("."),
     settings = Project.defaultSettings ++ Seq(
       name := "finatra",
@@ -34,7 +45,8 @@ object MsgpackerBuild extends Build {
         "io.backchat.jerkson" % "jerkson_2.9.2" % "0.7.0",
         "com.github.spullara.mustache.java" % "compiler" % "0.8.8"
       ),
-      libraryDependencies <++= dependsOnScalaVersion
+      libraryDependencies <++= dependsOnScalaVersion,
+      publish
     )
   )
 }
