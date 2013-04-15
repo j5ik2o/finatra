@@ -1,10 +1,11 @@
 
 ```scala
 resolvers ++= Seq(
-  "Finatra Repository" at "http://j5ik2o.github.io/finatra/repos"
+  "Finatra Snapshot Repository" at "http://j5ik2o.github.io/finatra/repos/release",
+  "Finatra Snapshot Repository" at "http://j5ik2o.github.io/finatra/repos/snapshot"
 ),
 libraryDependencies ++= Seq(
-  "org.twitter" %% "finatra" % "1.3.2-SNAPSHOT"
+  "com.twitter" %% "finatra" % "1.3.2-SNAPSHOT"
 ),
 ```
 
