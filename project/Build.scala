@@ -30,7 +30,7 @@ object FinatraBuild extends Build {
     settings = Project.defaultSettings ++ Seq(
       name := "finatra",
       organization := "com.twitter",
-      version := "0.1-SNAPSHOT",
+      version := "1.3.2-SNAPSHOT",
       scalaVersion := "2.9.2",
       crossScalaVersions := Seq("2.9.2", "2.10.1"),
       resolvers ++= Seq(
