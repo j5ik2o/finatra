@@ -1,4 +1,8 @@
 
+### やったこと
+
+- Scala 2.10でビルドできるようにしてみた。がしかし、ランタイムエラーになる。原因はまだ調べていない。
+
 ```scala
 resolvers ++= Seq(
   "Finatra Snapshot Repository" at "http://j5ik2o.github.io/finatra/repos/release",
